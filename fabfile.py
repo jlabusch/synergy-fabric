@@ -1,18 +1,15 @@
 from fabric.api import local, run, env, put
 
-def hector(ip):
-    env.hosts = ['family@' + ip]
-
-def client(server='stop'):
-    """Usage: fab hector:<hector-ip> client:[<server-ip>|stop]"""
+def client(server='stop', name='hector'):
+    """Usage: fab -H family@10.1.1.5 client:(<server-ip>|stop)[,<name>]"""
     run('killall -wq synergyc || :')
     if server != 'stop':
-        run('synergyc --name hector ' + server + '; sleep 1')
-        #run('/usr/bin/screen -d -m /usr/bin/synergyc -f --name hector ' + server)
+        run('synergyc --name ' + name + ' ' + server + '; sleep 1')
 
-def server(stop='start'):
-    """Usage: fab server[:stop]"""
-    local('killall -wq synergys || :')
-    if stop != 'stop':
-        local('synergys --config ./stonk-home.conf')
+def server(conf='./stonk-home.conf'):
+    """Usage: fab -H localhost server:(<config-file>|stop)"""
+    run('killall -wq synergys || :')
+    if conf != 'stop':
+        put(conf, '/tmp/sgys.conf')
+        run('synergys --config /tmp/sgys.conf; sleep 1')
 
