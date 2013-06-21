@@ -6,7 +6,7 @@ def client(server='stop', name='hector'):
     if server != 'stop':
         run('synergyc --name ' + name + ' ' + server + '; sleep 1')
 
-def server(conf='./stonk-home.conf'):
+def server(conf='./stonk.conf'):
     """Usage: fab -H localhost server:(<config-file>|stop)"""
     run('killall -wq synergys || :')
     if conf != 'stop':
