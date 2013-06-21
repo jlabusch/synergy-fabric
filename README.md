@@ -8,13 +8,26 @@ use this fabric script to handle repeated invocations.
 
 ## Usage
 
-Client:
+<pre>
+> fab -l
+Available commands:
 
-> `fab -H family@10.1.1.5 client:(<server-ip>|stop)[,<name>]`
+    client  Usage:   fab -H <user@host> client:(<server-ip>|stop)[,<name>]
+    server  Usage:   fab -H <user@host> server:(<config-file>|stop)
 
-Server:
+> fab -d client
+Displaying detailed information for task 'client':
 
-> `fab -H localhost server:(<config-file>|stop)`
+    Usage:   fab -H <user@host> client:(<server-ip>|stop)[,<name>]
+    Example: fab -H family@10.1.1.5 client:10.1.1.9,hector
+
+> fab -d server
+Displaying detailed information for task 'server':
+
+    Usage:   fab -H <user@host> server:(<config-file>|stop)
+    Example: fab -H localhost server:./stonk.conf
+
+</pre>
 
 ## License
 
