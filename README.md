@@ -3,7 +3,7 @@
 Fabric scripts for managing `synergys` and `synergyc`. Basically a simple non-graphical alternative to
 the excellent <a href="http://code.google.com/p/quicksynergy/">quicksynergy</a>.
 
-By all means use quicksynergy to generate your synergys config files, but once you have them
+By all means use quicksynergy to generate your `synergys` config files, but once you have them
 this fabric script to handle repeated invocations.
 
 ## Usage
