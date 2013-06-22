@@ -17,5 +17,5 @@ def server(conf='./stonk.conf'):
     run('killall -wq synergys || :')
     if conf != 'stop':
         put(conf, '/tmp/synergys.conf')
-        run('synergys --config /tmp/sgys.conf; sleep 1')
+        run('synergys --config /tmp/synergys.conf; sleep 1')
 
