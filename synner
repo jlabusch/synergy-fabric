@@ -26,6 +26,6 @@ if ($op eq 'stop'){
     print "fab -H $su\$(vms $sh) server:stop; ".
           "fab -H $cu\$(vms $ch) client:stop\n";
 }else{
-    print "fab -H $su\$(vms $sh) server:./$sh.conf".
+    print "fab -H $su\$(vms $sh) server:./$sh.conf; ".
           "fab -H $cu\$(vms $ch) client:\$(vms $sh),$ch\n";
 }
