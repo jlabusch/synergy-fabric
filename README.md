@@ -6,27 +6,46 @@ the excellent <a href="http://code.google.com/p/quicksynergy/">quicksynergy</a>.
 By all means use quicksynergy to generate your `synergys` config files, but once you have them
 use this fabric script to handle repeated invocations.
 
-## Usage
+## Example: Share the keyboard/mouse from `laptop` to `mediapc`
 
+1. Create a `synergys` config
 <pre>
-> fab -l
-Available commands:
+    laptop$ cat > laptop.conf
+    section: screens
+    	laptop:
+    	mediapc:
+    end
+    section: links
+    	laptop:
+    		right = mediapc
+    	mediapc:
+    		left = laptop
+    end
+</pre>
 
-    client  Usage:   fab -H <user@host> client:(<server-ip>|stop)[,<name>]
-    server  Usage:   fab -H <user@host> server:(<config-file>|stop)
+2. Start the server on `laptop`
+<pre>
+    laptop$ fab -H localhost server:./laptop.conf
+</pre>
 
-> fab -d client
-Displaying detailed information for task 'client':
+3. Start the client on `mediapc`
+<pre>
+    laptop$ fab -H media-pc client:laptop,media-pc
+</pre>
 
-    Usage:   fab -H <user@host> client:(<server-ip>|stop)[,<name>]
-    Example: fab -H family@10.1.1.5 client:10.1.1.9,hector
+## Helpers
 
-> fab -d server
-Displaying detailed information for task 'server':
+If you're using <a href="https://github.com/jlabusch/vmdns">vmdns</a> then `synner` can generate the appropriate fabric invocations for you.
 
-    Usage:   fab -H <user@host> server:(<config-file>|stop)
-    Example: fab -H localhost server:./stonk.conf
+Test:
+<pre>
+    laptop$ ./synner start mediapc laptop
+    fab -H $(vmdns laptop) server:./laptop.conf; fab -H $(vmdns mediapc) client:$(vmdns laptop),mediapc
+</pre>
 
+Execute:
+<pre>
+    laptop$ eval $(./synner start mediapc laptop)
 </pre>
 
 ## License
