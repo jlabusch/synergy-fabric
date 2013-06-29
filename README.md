@@ -6,7 +6,7 @@ the excellent <a href="http://code.google.com/p/quicksynergy/">quicksynergy</a>.
 By all means use quicksynergy to generate your `synergys` config files, but once you have them
 use this fabric script to handle repeated invocations.
 
-## Example: Share the keyboard/mouse from `laptop` to `mediapc`
+### Example: Share the keyboard/mouse from `laptop` to `mediapc`
 
 1. Create a `synergys` config
 <pre>
@@ -33,7 +33,7 @@ use this fabric script to handle repeated invocations.
     laptop$ fab -H media-pc client:laptop,media-pc
 </pre>
 
-## Helpers
+### Helpers
 
 If you're using <a href="https://github.com/jlabusch/vmdns">vmdns</a> then `synner` can generate the appropriate fabric invocations for you.
 
